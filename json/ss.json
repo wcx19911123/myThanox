@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Auto open close GPS",
+    "description": "开启特定应用自动打开GPS（包名配置到全局变量autoGPS）",
+    "priority": 2,
+    "condition": "frontPkgChanged == true && globalVarOf$autoGPS.contains(to) || pkgKilled == true && globalVarOf$autoGPS.contains(pkgName)",
+    "actions": [
+      "if (pkgKilled == true && hw.isLocationEnabled() == true) {hw.disableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('关闭GPS：' + pkgName);}}}",
+      "if (frontPkgChanged == true && hw.isLocationEnabled() == false) {hw.enableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1')  line.contains('true'))) {ui.showShortToast('打开GPS：' + to);}}}"
+    ]
+  }
+]
