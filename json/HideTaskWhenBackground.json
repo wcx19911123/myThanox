@@ -1,0 +1,11 @@
+ [
+  {
+    "name": "Hide task when background",
+    "description": "应用到后台时从任务列表隐藏（包名配置到全局变量hideTaskApps）",
+    "priority": 2,
+    "condition": "frontPkgChanged == true && to.contains('launcher') && globalVarOf$hideTaskApps.contains(from)",
+    "actions": [
+      "if (task.hasTaskFromPackage(from)) {task.removeTasksForPackage(from); foreach (line : globalVarOf$showLogs) {if (line.contains('Hide task when background') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('隐藏任务列表：' + from);}}}"
+    ]
+  }
+]
