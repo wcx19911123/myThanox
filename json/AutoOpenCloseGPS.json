@@ -5,8 +5,8 @@
     "priority": 2,
     "condition": "frontPkgChanged == true && globalVarOf$autoGPS.contains(to) || pkgKilled == true && globalVarOf$autoGPS.contains(pkgName) || taskRemoved == true && globalVarOf$autoGPS.contains(pkgName) && task.hasTaskFromPackage(pkgName) == false",
     "actions": [
-      "if (globalVarOf$autoGPS.contains(to) && hw.isLocationEnabled() == false) {hw.enableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('打开GPS：' + to);}}}",
-      "if (globalVarOf$autoGPS.contains(pkgName) && hw.isLocationEnabled() == true) {hw.disableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('关闭GPS：' + pkgName);}}}"
+      "if (frontPkgChanged == true && globalVarOf$autoGPS.contains(to) && hw.isLocationEnabled() == false) {hw.enableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('打开GPS：' + to);}}}",
+      "if ((pkgKilled == true || taskRemoved == true) && globalVarOf$autoGPS.contains(pkgName) && hw.isLocationEnabled() == true) {hw.disableLocation(); foreach (line : globalVarOf$showLogs) {if (line.contains('Auto open close GPS') && (line.contains('1') || line.contains('true'))) {ui.showShortToast('关闭GPS：' + pkgName);}}}"
     ]
   }
 ]
